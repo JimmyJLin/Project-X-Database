@@ -7,7 +7,7 @@ var db            = require('./../db/pgp/users.js');
 const secret      = process.env.SECRET;
 
 
-// applicant auth
+// applicant user auth
 users.route('/applicants')
   .get( db.showAllApplicantUsers, (req, res) => {
     res.send(res.rows);
@@ -26,7 +26,7 @@ users.route('/applicants/signup')
   });
 
 
-// employer auth
+// employer user auth
 users.route('/employers')
   .get( db.showAllEmployerUsers, (req, res) => {
     res.send(res.rows);

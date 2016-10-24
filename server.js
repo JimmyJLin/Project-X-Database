@@ -21,9 +21,15 @@ app.set('view engine', 'ejs');
 
 // routes
 const userRoutes = require(path.join(__dirname, '/routes/users'));
+const ApplicantsRoutes = require(path.join(__dirname, '/routes/applicants'));
+const EmployersRoutes = require(path.join(__dirname, '/routes/employers'));
+const JobsRoutes = require(path.join(__dirname, '/routes/jobs'));
 
 // api routes
 app.use('/api/auth', userRoutes);
+app.use('/api/applicants', ApplicantsRoutes);
+app.use('/api/employers', EmployersRoutes);
+app.use('/api/jobs', JobsRoutes);
 
 app.get('/', function(req, res){
   res.render('pages/index')

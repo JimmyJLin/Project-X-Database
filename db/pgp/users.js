@@ -1,5 +1,5 @@
 const pgp  = require( 'pg-promise' )();
-console.log('database connected')
+console.log('users auth database connected')
 
 if(process.env.ENVIRONMENT === 'production') {
   let cn = process.env.DATABASE_URL
