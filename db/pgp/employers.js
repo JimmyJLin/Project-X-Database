@@ -80,7 +80,7 @@ function postOneEmployerImage(req,res,next){
 
 // get one profile
 function showOneEmployer(req,res,next){
-  db.any('select * from Employers where id = $1;', [req.params.identifier] )
+  db.any('select * from Employers where id = $1;', [req.params.employer_id] )
   .then(function(data) {
     res.rows= data;
     console.log('Show one Employers', data)
