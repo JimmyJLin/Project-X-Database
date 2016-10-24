@@ -127,13 +127,14 @@ INSERT INTO Applications (applicant_id,job_id,status) VALUES
 (1,3,'pending'),
 (1,1,'pending');
 
+INSERT INTO Applicants (user_id,first_name,last_name,desired_industry,desired_location,school,education_level, experience_level,certifications,languages_spoken, resume_pdf, profile_image ) VALUES
+('2','Jimmy','Lin','Finance','{"New York", "New Jersey", "London", "Manhattan"}','Pace University','MBA','2 Years','{"Certified Public Accountant (CPA)", "Certified Financial Analysts (CFA)", "Personal Financial Specialist (PFS)"}', '{"TURKISH", "ENGLISH", "CHINESE"}', 'resume.pdf', 'images/img_placeholders/150x150.jpg');
+
 INSERT INTO Networking_Status (applicant_id,employer_id) VALUES
 (1,1),
 (1,2),
 (1,3);
 
-INSERT INTO Applicants (user_id,first_name,last_name,desired_industry,desired_location,school,education_level, experience_level,certifications,languages_spoken, resume_pdf, profile_image ) VALUES
-('2','Jimmy','Lin','Finance','{"New York", "New Jersey", "London", "Manhattan"}','Pace University','MBA','2 Years','{"Certified Public Accountant (CPA)", "Certified Financial Analysts (CFA)", "Personal Financial Specialist (PFS)"}', '{"TURKISH", "ENGLISH", "CHINESE"}', 'resume.pdf', 'images/img_placeholders/150x150.jpg');
 
 
 INSERT INTO Messages(sender,receiver,message) VALUES

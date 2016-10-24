@@ -25,6 +25,11 @@ users.route('/applicants/signup')
     res.status( 201 ).json( { data: 'success' } );
   });
 
+users.route('/applicant/:identifier')
+  .get( db.applicantProfile, (req, res) => {
+    res.send(res.rows);
+  })
+
 
 // employer user auth
 users.route('/employers')
@@ -44,6 +49,10 @@ users.route('/employers/signup')
     res.status( 201 ).json( { data: 'success' } );
   });
 
+users.route('/employer/:identifier')
+  .get( db.employerProfile, (req, res) => {
+    res.send(res.rows);
+  })
 
 
 

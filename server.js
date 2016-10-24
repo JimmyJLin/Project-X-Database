@@ -4,12 +4,16 @@ const logger = require('morgan');
 const path = require('path');
 const bodyParser = require('body-parser');
 const pgp = require('pg-promise')({});
+const cors = require('cors');
 const app = express();
+app.use(cors());
+
 
 /* app setting */
 const port = process.env.PORT || 8080;
 const server = app.listen(port);
 const request = require('request');
+
 
 // express server settings
 app.use(logger('dev'));
@@ -26,7 +30,7 @@ const EmployersRoutes = require(path.join(__dirname, '/routes/employers'));
 const JobsRoutes = require(path.join(__dirname, '/routes/jobs'));
 
 // api routes
-app.use('/api/auth', userRoutes);
+app.use('/api/users', userRoutes);
 app.use('/api/applicants', ApplicantsRoutes);
 app.use('/api/employers', EmployersRoutes);
 app.use('/api/jobs', JobsRoutes);

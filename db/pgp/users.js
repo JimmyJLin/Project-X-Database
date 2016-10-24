@@ -1,5 +1,6 @@
 const pgp  = require( 'pg-promise' )();
-console.log('users auth database connected')
+const bcrypt = require('bcrypt');
+const salt   = bcrypt.genSaltSync(10);
 
 if(process.env.ENVIRONMENT === 'production') {
   var cn = process.env.DATABASE_URL
@@ -12,14 +13,6 @@ if(process.env.ENVIRONMENT === 'production') {
     password: process.env.DB_PASSWORD
   }
 }
-
-// const cn = {
-//   host: process.env.DB_HOST,
-//   port: 5432,
-//   database: process.env.DB_NAME,
-//   user: process.env.DB_USER,
-//   password: process.env.DB_PASSWORD
-// }
 
 const db = pgp(cn);
 
@@ -75,6 +68,19 @@ function createApplicantUser(req, res, next) {
   }
 }
 
+// get applicant profile based on user_id
+function applicantProfile(req,res,next){
+  db.one("select * from Applicants where user_id = $1",
+  [ req.params.uid ])
+  .then(function(data) {
+    res.rows= data;
+    next();
+  })
+  .catch(function(error){
+    console.error(error);
+  })
+}
+
 // show all Employer userss
 function showAllEmployerUsers(req, res, next) {
   db.any('select * from EmployerUsers;')
@@ -126,12 +132,42 @@ function createEmployerUser(req, res, next) {
   }
 }
 
+
+function employerProfile(req,res,next){
+  db.one("select * from Employers where email = $1",
+  [ req.params.identifier ])
+  .then(function(data) {
+    res.rows= data;
+    next();
+  })
+  .catch(function(error){
+    console.error(error);
+  })
+}
+
+// User Auth Queries -  CREATE AN ACCOUNT
+function createSecure(email, password,callback) {
+  console.log('create secure fired')
+  //hashing the password given by the user at signup
+  bcrypt.genSalt(function(err, salt) {
+    bcrypt.hash(password, salt, function(err, hash) {
+      console.log(hash)
+      //this callback saves the user to our databoard
+      //with the hashed password
+      callback(email,hash);
+    })
+  })
+}
+
+
 // Applicants Auth exports
 module.exports.showAllApplicantUsers = showAllApplicantUsers;
 module.exports.loginApplicantUser = loginApplicantUser;
 module.exports.createApplicantUser = createApplicantUser;
+module.exports.applicantProfile = applicantProfile;
 
 // Employers Auth exports
 module.exports.showAllEmployerUsers = showAllEmployerUsers;
 module.exports.loginEmployerUser = loginEmployerUser;
 module.exports.createEmployerUser = createEmployerUser;
+module.exports.employerProfile = employerProfile;
