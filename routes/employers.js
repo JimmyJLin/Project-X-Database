@@ -6,7 +6,7 @@ var bodyParser    = require('body-parser');
 var db            = require('./../db/pgp/employers.js');
 const secret      = "sosecret";
 const multer = require('multer');
-const upload = multer({ dest: 'public/images/company_logo/'})
+const upload = multer({ dest: 'images/company_logo/'})
 
 
 employers.route('/')
