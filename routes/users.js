@@ -4,7 +4,7 @@ const jwt         = require( 'jsonwebtoken' );
 var users         = express.Router();
 var bodyParser    = require('body-parser');
 var db            = require('./../db/pgp/users.js');
-const secret      = process.env.SECRET;
+const secret      = 'sosecret';
 
 
 // applicant user auth
@@ -26,7 +26,7 @@ users.route('/applicants/signup')
   });
 
 users.route('/applicant/:identifier')
-  .get( db.applicantProfile, (req, res) => {
+  .get( db.applicantProfileCheck, (req, res) => {
     res.send(res.rows);
   })
 

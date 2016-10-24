@@ -4,7 +4,7 @@ const jwt         = require( 'jsonwebtoken' );
 var jobs          = express.Router();
 var bodyParser    = require('body-parser');
 var db            = require('./../db/pgp/jobs.js');
-const secret      = process.env.SECRET;
+const secret      = "sosecret";
 
 
 

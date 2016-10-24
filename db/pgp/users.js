@@ -81,6 +81,19 @@ function applicantProfile(req,res,next){
   })
 }
 
+function applicantProfileCheck(req,res,next){
+  db.one("select * from Applicants where email = $1",
+  [ req.params.identifier ])
+  .then(function(data) {
+    res.rows= data;
+    next();
+  })
+  .catch(function(error){
+    console.error(error);
+  })
+}
+
+
 // show all Employer userss
 function showAllEmployerUsers(req, res, next) {
   db.any('select * from EmployerUsers;')
@@ -160,11 +173,13 @@ function createSecure(email, password,callback) {
 }
 
 
+
 // Applicants Auth exports
 module.exports.showAllApplicantUsers = showAllApplicantUsers;
 module.exports.loginApplicantUser = loginApplicantUser;
 module.exports.createApplicantUser = createApplicantUser;
 module.exports.applicantProfile = applicantProfile;
+module.exports.applicantProfileCheck = applicantProfileCheck;
 
 // Employers Auth exports
 module.exports.showAllEmployerUsers = showAllEmployerUsers;
