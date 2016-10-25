@@ -32,4 +32,9 @@ employers.route('/:employer_id')
     res.send(res.rows);
   })
 
+employers.route('/profile/:uid')
+  .get( db.employerProfile, (req, res) => {
+    res.send(res.rows);
+  })
+
 module.exports = employers;

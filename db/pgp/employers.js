@@ -92,10 +92,10 @@ function showOneEmployer(req,res,next){
 };
 
 function employerProfile(req,res,next){
-  db.one("select * from Employers where email = $1",
-  [ req.params.identifier ])
+  db.any('select * from Employers where id = $1;', [req.params.uid] )
   .then(function(data) {
     res.rows= data;
+    console.log('Show one Employers', data)
     next();
   })
   .catch(function(error){

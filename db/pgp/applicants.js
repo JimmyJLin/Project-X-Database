@@ -121,19 +121,6 @@ function applicantProfile(req,res,next){
   })
 }
 
-// get employer profile based on user_id
-function employerProfile(req,res,next){
-  db.one("select * from Employers where email = $1",
-  [ req.params.identifier ])
-  .then(function(data) {
-    res.rows= data;
-    next();
-  })
-  .catch(function(error){
-    console.error(error);
-  })
-}
-
 
 
 module.exports.showAllApplicants = showAllApplicants;
