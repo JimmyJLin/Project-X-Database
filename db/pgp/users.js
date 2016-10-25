@@ -55,11 +55,9 @@ function createApplicantUser(req, res, next) {
   console.log('req.body from post request', req.body)
   createSecure(req.body.email, req.body.password, saveUser);
   function saveUser(email, hash) {
-    db.none("INSERT INTO ApplicantUsers (email, password, type, name, last_name) VALUES ($1, $2, $3,$4,$5 returning id);", [email, hash, req.body.type, req.body.name, req.body.last_name])
+    db.any("INSERT INTO ApplicantUsers (email, password, type, name, last_name) VALUES ($1, $2, $3,$4,$5 returning id);", [email, hash, req.body.type, req.body.name, req.body.last_name])
     .then(function (data) {
       // success;
-      // var id = data.id
-      // applicantEntry(id)
       console.log('New Applicant User added', data)
       next();
     })
