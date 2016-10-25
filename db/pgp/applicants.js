@@ -129,4 +129,3 @@ module.exports.postOneApplicantDetails = postOneApplicantDetails;
 module.exports.showOneApplicant = showOneApplicant;
 module.exports.postOneApplicantImage = postOneApplicantImage;
 module.exports.applicantProfile = applicantProfile;
-module.exports.employerProfile = employerProfile;
