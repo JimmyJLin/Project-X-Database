@@ -58,6 +58,8 @@ function createApplicantUser(req, res, next) {
     db.any("INSERT INTO ApplicantUsers (email, password, type, name, last_name) VALUES ($1, $2, $3,$4,$5) returning id;", [email, hash, req.body.type, req.body.name, req.body.last_name])
     .then(function (data) {
       // success;
+      res.rows= data;
+      console.log("users pgp - line 62 data", data)
       var id = data.id
 
       db.any('INSERT INTO Applicants (user_id) VALUES ($1);', [id]).then(function(){
