@@ -59,13 +59,13 @@ function createApplicantUser(req, res, next) {
     .then(function (data) {
       // success;
       id = data.id
-      
+
       db.any('INSERT INTO Applicants (user_id) VALUES ($1);', [id]).then(function(){
         console.log('succeess')
+        next();
       })
 
       console.log('New Applicant User added', data)
-      next();
     })
     .catch(function () {
       // error;
