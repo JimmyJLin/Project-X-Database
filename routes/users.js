@@ -21,7 +21,7 @@ users.route('/applicants/login')
 
 users.route('/applicants/signup')
   .post( db.createApplicantUser, ( req, res ) => {
-    console.log('request us receieved', req )
+    console.log('request us received', req )
     res.status( 201 ).json( { data: 'success' } );
   });
 
