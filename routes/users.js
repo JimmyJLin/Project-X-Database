@@ -49,7 +49,7 @@ users.route('/employers/signup')
     res.status( 201 ).json( { data: 'success' } );
   });
 
-users.route('/employer/:identifier')
+users.route('/employers/:identifier')
   .get( db.employerProfile, (req, res) => {
     res.send(res.rows);
   })
