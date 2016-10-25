@@ -21,7 +21,7 @@ users.route('/applicants/login')
 
 users.route('/applicants/signup')
   .post( db.createApplicantUser, ( req, res ) => {
-    console.log('request us receieved', req )
+    console.log('request us received', req )
     res.status( 201 ).json( { data: 'success' } );
   });
 
@@ -49,7 +49,7 @@ users.route('/employers/signup')
     res.status( 201 ).json( { data: 'success' } );
   });
 
-users.route('/employer/:identifier')
+users.route('/employers/:identifier')
   .get( db.employerProfile, (req, res) => {
     res.send(res.rows);
   })
