@@ -110,7 +110,7 @@ function postOneApplicantImage(req,res,next){
 
 // get applicant profile based on user_id
 function applicantProfile(req,res,next){
-  db.one("select * from Applicants where user_id = $1",
+  db.one("select * from Applicants inner join  ApplicantUsers on  Applicants.user_id = ApplicantUsers.id where Applicants.user_id = $1",
   [ req.params.uid ])
   .then(function(data) {
     res.rows= data;
