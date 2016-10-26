@@ -59,8 +59,8 @@ function createApplicantUser(req, res, next) {
     .then(function (data) {
       // success;
       res.rows= data;
-      console.log("users pgp - line 62 data", data)
-      var id = data.id
+      console.log("users pgp - line 62 data", data[0].id)
+      var id = data[0].id
 
       db.any('INSERT INTO Applicants (user_id) VALUES ($1);', [id]).then(function(){
         console.log('succeess')
