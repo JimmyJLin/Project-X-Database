@@ -47,6 +47,7 @@ function uploadProfileImage(req,res,next){
 // post applicant profile
 function postOneApplicantDetails(req,res,next){
   console.log("req.body coming from db_apex file postOneApplicant", req.body)
+<<<<<<< HEAD
   db.any(`INSERT INTO Applicants  (
     user_id,
     desired_industry,
@@ -60,8 +61,19 @@ function postOneApplicantDetails(req,res,next){
     certifications,
     languages_spoken
   ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) returning id;`,
+=======
+  db.any(`UPDATE Applicants SET
+    desired_industry = $1,
+    education_level= $2,
+    school= $3,
+    experience_level= $4,
+    resume_pdf= $5,
+    profile_image= $6,
+    desired_location= $7,
+    certifications= $8,
+    languages_spoken = $9 where user_id = $10 returning id;`,
+>>>>>>> 9d2e6b62c53fb25bc2d62432f3a4a3c392b19079
     [
-      req.body.user_id,
       req.body.desired_industry,
       req.body.education_level,
       req.body.educationArry,
@@ -71,7 +83,8 @@ function postOneApplicantDetails(req,res,next){
       req.body.profile_image,
       req.body.desired_location,
       req.body.certifications,
-      req.body.languages_spoken
+      req.body.languages_spoken,
+      req.body.user_id
     ])
   .then(function(data) {
     res.rows = data[0]
