@@ -30,15 +30,11 @@ applicants.route('/new-skillslevels')
     res.send(res.rows)
   })
 
-applicants.route('/new-skillslevels')
+applicants.route('new-industrylevels')
     .post(db.postApplicantIndustryLevels, (req, res) => {
       res.send(res.rows)
   })
 
-applicants.route('/new-industrylevels')
-  .post(db.postOneApplicantDetails, (req, res) => {
-    res.send(res.rows)
-  })
 
 applicants.route('/:applicant_id')
   .get( db.showOneApplicant, (req, res) => {
