@@ -25,6 +25,12 @@ applicants.route('/new')
     res.send(res.rows)
   })
 
+applicants.route('/new-levels')
+  .post(db.postApplicantSkillsLevels,db.postApplicantIndustryLevels, (req, res) => {
+    res.send(res.rows)
+  })
+
+
 applicants.route('/newTest')
   .post(db.postOneApplicantDetails, (req, res) => {
     res.send(res.rows)

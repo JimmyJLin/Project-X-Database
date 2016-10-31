@@ -47,8 +47,6 @@ CREATE TABLE Applicants (
   zipcode VARCHAR(200),
   phone_number VARCHAR(200),
   job_type text,
-  job_skills text[],
-  job_industry text[],
   experience_level VARCHAR(200),
   certifications text[],
   languages_spoken text[],
@@ -77,4 +75,18 @@ CREATE TABLE Applications (
   job_id INTEGER REFERENCES Jobs (id) ON DELETE CASCADE,
   status VARCHAR(20),
   PRIMARY KEY (applicant_id, job_id)
+);
+
+CREATE TABLE  IndustryExperiences(
+  id SERIAL PRIMARY KEY UNIQUE,
+  user_id INTEGER REFERENCES ApplicantUsers (id) ON DELETE CASCADE,
+  industry_name VARCHAR(200),
+  level VARCHAR(200)
+);
+
+CREATE TABLE  SkillsExperiences(
+  id SERIAL PRIMARY KEY UNIQUE,
+  user_id INTEGER REFERENCES ApplicantUsers (id) ON DELETE CASCADE,
+  skill_name VARCHAR(200),
+  level VARCHAR(200)
 );

@@ -133,6 +133,29 @@ function applicantProfile(req,res,next){
   })
 }
 
+function postApplicantSkillsLevels(){
+  db.any("INSERT INTO SkillsExperiences (user_id, skill_name, level) VALUES($1,$2,$3)", [(req.body.user_id, req.body.skill_name,req.body.level )]
+  .then(function(data) {
+      res.rows= data;
+      next();
+    })
+  .catch(function(error){
+      console.error(error);
+    })
+}
+
+function postApplicantIndustryLevels(){
+
+  db.any("INSERT INTO IndustryExperiences (user_id, industry_name, level) VALUES($1,$2,$3)", [(req.body.user_id, req.body.industry_name,req.body.level )]
+  .then(function(data) {
+      res.rows= data;
+      next();
+    })
+  .catch(function(error){
+      console.error(error);
+    })
+}
+
 
 
 module.exports.showAllApplicants = showAllApplicants;
@@ -141,3 +164,5 @@ module.exports.postOneApplicantDetails = postOneApplicantDetails;
 module.exports.showOneApplicant = showOneApplicant;
 module.exports.postOneApplicantImage = postOneApplicantImage;
 module.exports.applicantProfile = applicantProfile;
+module.exports.postApplicantIndustryLevels = postApplicantIndustryLevels;
+module.exports.postApplicantSkillsLevels = postApplicantSkillsLevels;
