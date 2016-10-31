@@ -25,12 +25,12 @@ applicants.route('/new')
     res.send(res.rows)
   })
 
-applicants.route('/new-skillslevels')
+applicants.route('/new_skillslevels')
   .post(db.postApplicantSkillsLevels, (req, res) => {
     res.send(res.rows)
   })
 
-applicants.route('new-industrylevels')
+applicants.route('new_industrylevels')
     .post(db.postApplicantIndustryLevels, (req, res) => {
       res.send(res.rows)
   })
