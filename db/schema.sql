@@ -47,6 +47,8 @@ CREATE TABLE Applicants (
   zipcode VARCHAR(200),
   phone_number VARCHAR(200),
   job_type text,
+  job_skills text[],
+  job_industry text[],
   experience_level VARCHAR(200),
   certifications text[],
   languages_spoken text[],
