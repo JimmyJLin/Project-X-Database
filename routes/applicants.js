@@ -29,12 +29,17 @@ applicants.route('/new_skillslevels')
   .post(db.postApplicantSkillsLevels, (req, res) => {
     res.send(res.rows)
   })
+  .get( db.getApplicantSkillsLevels, (req, res) => {
+    res.send(res.rows);
+  })
 
 applicants.route('/new_industrylevels')
     .post(db.postApplicantIndustryLevels, (req, res) => {
       res.send(res.rows)
   })
-
+  .get( db.getApplicantIndustryLevels, (req, res) => {
+    res.send(res.rows);
+  })
 
 applicants.route('/:applicant_id')
   .get( db.showOneApplicant, (req, res) => {
