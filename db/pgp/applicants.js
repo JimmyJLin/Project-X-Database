@@ -133,7 +133,7 @@ function applicantProfile(req,res,next){
   })
 }
 
-function postApplicantSkillsLevels(){
+function postApplicantSkillsLevels(req,res,next){
   db.none("INSERT INTO SkillsExperiences (user_id, skill_name, level) VALUES ($1,$2,$3)", [ req.body.user_id, req.body.skill_name,req.body.level ])
   .then(function(data) {
       next();
@@ -143,7 +143,7 @@ function postApplicantSkillsLevels(){
     })
 }
 
-function postApplicantIndustryLevels(){
+function postApplicantIndustryLevels(req,res,next){
 
   db.none("INSERT INTO IndustryExperiences (user_id, industry_name, level) VALUES($1,$2,$3)", [req.body.user_id, req.body.industry_name,req.body.level ])
   .then(function(data) {
