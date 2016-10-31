@@ -134,7 +134,7 @@ function applicantProfile(req,res,next){
 }
 
 function postApplicantSkillsLevels(){
-  db.any("INSERT INTO SkillsExperiences (user_id, skill_name, level) VALUES($1,$2,$3)", [(req.body.user_id, req.body.skill_name,req.body.level )]
+  db.any("INSERT INTO SkillsExperiences (user_id, skill_name, level) VALUES ($1,$2,$3)", [ req.body.user_id, req.body.skill_name,req.body.level ])
   .then(function(data) {
       res.rows= data;
       next();
@@ -146,7 +146,7 @@ function postApplicantSkillsLevels(){
 
 function postApplicantIndustryLevels(){
 
-  db.any("INSERT INTO IndustryExperiences (user_id, industry_name, level) VALUES($1,$2,$3)", [(req.body.user_id, req.body.industry_name,req.body.level )]
+  db.any("INSERT INTO IndustryExperiences (user_id, industry_name, level) VALUES($1,$2,$3)", [req.body.user_id, req.body.industry_name,req.body.level ])
   .then(function(data) {
       res.rows= data;
       next();
