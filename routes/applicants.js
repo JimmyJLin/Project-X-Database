@@ -25,13 +25,17 @@ applicants.route('/new')
     res.send(res.rows)
   })
 
-applicants.route('/new-levels')
-  .post(db.postApplicantSkillsLevels,db.postApplicantIndustryLevels, (req, res) => {
+applicants.route('/new-skillslevels')
+  .post(db.postApplicantSkillsLevels, (req, res) => {
     res.send(res.rows)
   })
 
+applicants.route('/new-skillslevels')
+    .post(db.postApplicantIndustryLevels, (req, res) => {
+      res.send(res.rows)
+  })
 
-applicants.route('/newTest')
+applicants.route('/new-industrylevels')
   .post(db.postOneApplicantDetails, (req, res) => {
     res.send(res.rows)
   })
