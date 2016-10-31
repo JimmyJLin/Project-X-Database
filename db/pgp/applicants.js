@@ -144,7 +144,7 @@ function postApplicantSkillsLevels(req,res,next){
 }
 
 function getApplicantSkillsLevels(req,res,next){
-  db.any( "Select * from SkillsExperiences where user_id = $1", [ req.body.user_id])
+  db.any( "Select * from SkillsExperiences where user_id = $1", [ req.params.user_id])
   .then(function(data) {
     res.rows= data;
     next();
@@ -165,7 +165,7 @@ function postApplicantIndustryLevels(req,res,next){
     })
 }
 function getApplicantIndustryLevels(req,res,next){
-  db.any( "Select * from IndustryExperiences where user_id = $1", [ req.body.user_id])
+  db.any( "Select * from IndustryExperiences where user_id = $1", [ req.params.user_id])
   .then(function(data) {
     res.rows= data;
     next();
