@@ -25,6 +25,11 @@ applicants.route('/new')
     res.send(res.rows)
   })
 
+applicants.route('/newTest')
+  .post(db.postOneApplicantDetails, (req, res) => {
+    res.send(res.rows)
+  })
+
 applicants.route('/:applicant_id')
   .get( db.showOneApplicant, (req, res) => {
     res.send(res.rows);

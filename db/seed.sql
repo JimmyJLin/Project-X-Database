@@ -2,6 +2,10 @@ INSERT INTO ApplicantUsers (name, last_name, email, password) VALUES
 ('jim', 'jim-last', 'jim@jim.com', '23242sdsdsds'),
 ('raz', 'raz-last', 'raz@raz.com', 'dsdsdsdsds'),
 ('emi', 'emi-last', 'emi@emi.com', 'dsdsdsdsdsdsdsds'),
+('emi', 'emi-last', 'emi1@emi.com', 'dsdsdsdsdsdsdsds'),
+('emi', 'emi-last', 'emi2@emi.com', 'dsdsdsdsdsdsdsds'),
+('emi', 'emi-last', 'emi3@emi.com', 'dsdsdsdsdsdsdsds'),
+('emi', 'emi-last', 'emi4@emi.com', 'dsdsdsdsdsdsdsds'),
 ('emine', 'emine-last', 'emine@emine.com', '44dsdsds');
 
 INSERT INTO Employer (employer_id, name, last_name, email, password) VALUES
@@ -104,8 +108,12 @@ INSERT INTO Employers (
 
 INSERT INTO Applicants (user_id,desired_industry,desired_location,skills,education,experience,certifications,resume_pdf,image)  VALUES
 ('1', 'Finance', 'New York', 'Programming', 'General Assembly', 'xyz company, tyes company', 'spa', 'rere.pdf','sasa.png'),
+('2', 'Enternatinment', 'New York', 'Programming', 'General Assembly', 'xyz company, tyes company', 'spa', 'rere.pdf','sasa.png'),
 ('3', 'Enternatinment', 'New York', 'Programming', 'General Assembly', 'xyz company, tyes company', 'spa', 'rere.pdf','sasa.png'),
-('2', 'Health', 'New York', 'Programming', 'General Assembly', 'xyz company, tyes company', 'spa', 'rere.pdf','sasa.png');
+('4', 'Enternatinment', 'New York', 'Programming', 'General Assembly', 'xyz company, tyes company', 'spa', 'rere.pdf','sasa.png'),
+('5', 'Enternatinment', 'New York', 'Programming', 'General Assembly', 'xyz company, tyes company', 'spa', 'rere.pdf','sasa.png'),
+('6', 'Enternatinment', 'New York', 'Programming', 'General Assembly', 'xyz company, tyes company', 'spa', 'rere.pdf','sasa.png'),
+('7', 'Health', 'New York', 'Programming', 'General Assembly', 'xyz company, tyes company', 'spa', 'rere.pdf','sasa.png');
 
 
 INSERT INTO Jobs (employer_id,title,description,location,type,industry,salary,experience_level,education_level,starting_date, status) VALUES
@@ -116,29 +124,5 @@ INSERT INTO Jobs (employer_id,title,description,location,type,industry,salary,ex
 (5, 'Finance Manager', 'dskdslds dsdsds dsds', 'New York', 'Full Time', 'Finance', '$120.000', '5 years','masters degree', 'asap', 'active');
 
 
-INSERT INTO JTEmployersProfileAndEmployerUsers (user_id , employer_id) VALUES
-(1,2),
-(1,4),
-(1,5);
-
-INSERT INTO Applications (applicant_id,job_id,status) VALUES
-(2,1,'pending'),
-(2,3,'pending'),
-(1,3,'pending'),
-(1,1,'pending');
-
-INSERT INTO Applicants (user_id,first_name,last_name,desired_industry,desired_location,school,education_level, experience_level,certifications,languages_spoken, resume_pdf, profile_image ) VALUES
-('2','Jimmy','Lin','Finance','{"New York", "New Jersey", "London", "Manhattan"}','Pace University','MBA','2 Years','{"Certified Public Accountant (CPA)", "Certified Financial Analysts (CFA)", "Personal Financial Specialist (PFS)"}', '{"TURKISH", "ENGLISH", "CHINESE"}', 'resume.pdf', 'images/img_placeholders/150x150.jpg');
-
-INSERT INTO Networking_Status (applicant_id,employer_id) VALUES
-(1,1),
-(1,2),
-(1,3);
-
-
-
-INSERT INTO Messages(sender,receiver,message) VALUES
-(1,2,'Hi'),
-(2,1,'Who are you?'),
-(1,2,'I am noOne'),
-(2,1,'So Silly');
+INSERT INTO Applicants (user_id,desired_industry,desired_location,school,education_level, experience_level,certifications,languages_spoken, resume_pdf, profile_image ) VALUES
+('2','Finance','{"New York", "New Jersey", "London", "Manhattan"}','Pace University','MBA','2 Years','{"Certified Public Accountant (CPA)", "Certified Financial Analysts (CFA)", "Personal Financial Specialist (PFS)"}', '{"TURKISH", "ENGLISH", "CHINESE"}', 'resume.pdf', 'images/img_placeholders/150x150.jpg');

@@ -1,11 +1,8 @@
 DROP TABLE if EXISTS ApplicantUsers CASCADE;
 DROP TABLE if EXISTS Employers CASCADE;
-DROP TABLE if EXISTS JTEmployersProfileAndEmployerUsers CASCADE;
 DROP TABLE if EXISTS Applicants CASCADE;
 DROP TABLE if EXISTS Jobs CASCADE;
 DROP TABLE if EXISTS Applications CASCADE;
-DROP TABLE if EXISTS Networking_Status CASCADE;
-DROP TABLE if EXISTS Messages CASCADE;
 
 
 CREATE TABLE ApplicantUsers (
@@ -39,27 +36,21 @@ CREATE TABLE Employers (
 );
 
 
-
-
--- CREATE TABLE JTEmployersProfileAndEmployerUsers (
---   user_id INTEGER REFERENCES EmployerUsers (id) ON DELETE CASCADE,
---   employer_id INTEGER REFERENCES Employers (id) ON DELETE CASCADE,
---   PRIMARY KEY (user_id, employer_id)
--- );
-
 CREATE TABLE Applicants (
   id SERIAL PRIMARY KEY UNIQUE,
   user_id INTEGER REFERENCES ApplicantUsers (id) ON DELETE CASCADE,
   desired_industry text,
   desired_location text[],
   education_level VARCHAR(200),
-  school VARCHAR(200),
+  school text[],
+  work_history text[],
   experience_level VARCHAR(200),
   certifications text[],
   languages_spoken text[],
   resume_pdf VARCHAR(2000),
   profile_image VARCHAR(200)
 );
+
 
 CREATE TABLE Jobs (
   id SERIAL PRIMARY KEY UNIQUE,
@@ -81,17 +72,4 @@ CREATE TABLE Applications (
   job_id INTEGER REFERENCES Jobs (id) ON DELETE CASCADE,
   status VARCHAR(20),
   PRIMARY KEY (applicant_id, job_id)
-);
-
-CREATE TABLE Networking_Status (
-  applicant_id INTEGER REFERENCES ApplicantUsers (id) ON DELETE CASCADE,
-  employer_id INTEGER REFERENCES EmployerUsers (id) ON DELETE CASCADE,
-  PRIMARY KEY (applicant_id, employer_id)
-);
-
-CREATE TABLE Messages (
-  id SERIAL PRIMARY KEY UNIQUE,
-  sender INTEGER REFERENCES Users (id) ON DELETE CASCADE,
-  receiver INTEGER REFERENCES Users (id) ON DELETE CASCADE,
-  message VARCHAR(3500)
 );
