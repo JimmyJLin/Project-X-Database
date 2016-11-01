@@ -105,6 +105,7 @@ function updateJobStatusToActive(req,res,next){
     })
 };
 
+
 // apply for one job
 function applyOneJob(req, res, next){
   db.any(`INSERT INTO applications  (

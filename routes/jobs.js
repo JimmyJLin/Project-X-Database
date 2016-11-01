@@ -43,6 +43,11 @@ jobs.route('/archived/update/:job_id')
     res.send(res.rows)
   })
 
+  jobs.route('/applications')
+    .get( db.showAllApplications, (req, res) => {
+      res.send(res.rows)
+    })
+
 jobs.route('/application')
   .post( db.applyOneJob, (req, res) => {
     res.send(res.rows)
