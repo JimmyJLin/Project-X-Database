@@ -105,6 +105,19 @@ function updateJobStatusToActive(req,res,next){
     })
 };
 
+// show all applications
+function showAllApplications(req,res,next){
+  db.any('select * from Applications;')
+  .then(function(data) {
+    res.rows= data;
+    console.log('this should show all Applications;', data)
+    next();
+  })
+  .catch(function(error){
+    console.error(error);
+  })
+};
+
 // apply for one job
 function applyOneJob(req, res, next){
   db.any(`INSERT INTO applications  (
