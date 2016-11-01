@@ -154,7 +154,7 @@ function getJobApplicants(req, res, next){
  })
 }
 
-
+module.exports.showAllApplications = showAllApplications;
 module.exports.showAllJobs = showAllJobs;
 module.exports.postAJob = postAJob;
 module.exports.showActiveJobs = showActiveJobs;
