@@ -43,6 +43,7 @@ CREATE TABLE Applicants (
   desired_location text[],
   education_level VARCHAR(200),
   school text[],
+  summary VARCHAR(2000),
   work_history text[],
   zipcode VARCHAR(200),
   phone_number VARCHAR(200),
