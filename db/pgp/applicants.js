@@ -56,15 +56,14 @@ function postOneApplicantDetails(req,res,next){
     zipcode,
     phone_number,
     job_type,
-    job_skills,
-    job_industry,
     experience_level,
     resume_pdf,
     profile_image,
     desired_location,
     certifications,
-    languages_spoken
-  ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) returning id;`,
+    languages_spoken,
+    summary
+  ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) returning id;`,
     [
       req.body.user_id,
       req.body.desired_industry,
@@ -81,7 +80,8 @@ function postOneApplicantDetails(req,res,next){
       req.body.profile_image,
       req.body.desired_location,
       req.body.certifications,
-      req.body.languages_spoken
+      req.body.languages_spoken,
+      req.body.summary
     ])
   .then(function(data) {
     res.rows = data[0]
