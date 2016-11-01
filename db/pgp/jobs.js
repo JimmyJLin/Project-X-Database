@@ -108,9 +108,8 @@ function updateJobStatusToActive(req,res,next){
 // show all applications
 function showAllApplications(req,res,next){
   db.any("select * from Applications;")
-  .then(function(data) {
-    res.rows= data;
-    console.log('this should show all Applications;', data)
+  .then((data) => {
+    res.rows = data;
     next();
   })
   .catch(function(error){
