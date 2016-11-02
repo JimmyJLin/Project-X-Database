@@ -38,7 +38,7 @@ applicants.route('/new_industrylevels')
     .post(db.postApplicantIndustryLevels, (req, res) => {
       res.send(res.rows)
   })
-applicants.route('/new_industrylevels/:user_id') 
+applicants.route('/new_industrylevels/:user_id')
   .get( db.getApplicantIndustryLevels, (req, res) => {
     res.send(res.rows);
   })
