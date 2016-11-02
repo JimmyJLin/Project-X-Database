@@ -122,7 +122,7 @@ function applicantProfile(req,res,next){
   db.any("select * from Applicants inner join  ApplicantUsers on  Applicants.user_id = ApplicantUsers.id where Applicants.user_id = $1",
   [ req.params.uid ])
   .then(function(data) {
-    res.rows= data;
+    res.rows= data[0];
     next();
   })
   .catch(function(error){
