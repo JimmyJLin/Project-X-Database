@@ -45,16 +45,55 @@ function uploadCompanyImage(req,res,next){
 
 };
 
+/*
+company_name: '',
+company_address: '',
+company_city: '',
+company_state: '',
+company_zip: '',
+company_description: '',
+company_website: '',
+company_phone_number: '',
+company_email: '',
+company_size: '',
+company_industry: '',
+company_branch: '',
+company_logo: '',
+company_files: []
+*/
 // post company profile
 function postOneEmployer(req,res,next){
-  db.any("UPDATE Employers SET company_description = $2, company_email = $3, company_branch = $4, company_size = $5, company_industry = $6 WHERE id = $1 RETURNING id;",
+  db.any(`UPDATE Employers SET
+    company_name = $1,
+    company_address =  $2,
+    company_city = $3,
+    company_state =  $4,
+    company_zip =  $5,
+    company_description =  $6,
+    company_website =  $7,
+    company_phone_number = $8,
+    company_email = $9,
+    company_size = $10,
+    company_industry =  $11,
+    company_branch = $12,
+    company_logo =  $13
+    WHERE user_id = $14 RETURNING id;`,
     [
-      req.body.user_id,
+      req.body.company_name,
+      req.body.company_address,
+      req.body.company_city,
+      req.body.company_state,
+      req.body.company_zip,
       req.body.company_description,
+      req.body.company_phone_number,
       req.body.company_email,
-      req.body.company_branch,
       req.body.company_size,
-      req.body.company_industry
+      req.body.company_address,
+      req.body.company_email,
+      req.body.company_industry,
+      req.body.company_branch,
+      req.body.company_logo,
+      req.body.user_id
     ])
   .then(function(data) {
     res.rows = data[0]
