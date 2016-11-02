@@ -71,14 +71,13 @@ function postOneEmployer(req,res,next){
     company_zip =  $5,
     company_description =  $6,
     company_phone_number =  $7,
-    company_website =  $8,
-    company_phone_number = $9,
-    company_email = $10,
-    company_size = $11,
-    company_industry =  $12,
-    company_branch = $13,
-    company_logo =  $14
-    WHERE id = $15 RETURNING id;`,
+    company_website = $8,
+    company_email = $9,
+    company_size = $10,
+    company_industry =  $11,
+    company_branch = $12,
+    company_logo =  $13
+    WHERE id = $14 RETURNING id;`,
     [
       req.body.company_name,
       req.body.company_address,
@@ -87,14 +86,13 @@ function postOneEmployer(req,res,next){
       req.body.company_zip,
       req.body.company_description,
       req.body.company_phone_number,
+      req.body.company_website,
       req.body.company_email,
       req.body.company_size,
-      req.body.company_address,
-      req.body.company_email,
       req.body.company_industry,
       req.body.company_branch,
       req.body.company_logo,
-      req.body.user_id
+      req.body.id
     ])
   .then(function(data) {
     res.rows = data[0]
