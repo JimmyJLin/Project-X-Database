@@ -70,14 +70,15 @@ function postOneEmployer(req,res,next){
     company_state =  $4,
     company_zip =  $5,
     company_description =  $6,
-    company_website =  $7,
-    company_phone_number = $8,
-    company_email = $9,
-    company_size = $10,
-    company_industry =  $11,
-    company_branch = $12,
-    company_logo =  $13
-    WHERE user_id = $14 RETURNING id;`,
+    company_phone_number =  $7,
+    company_website =  $8,
+    company_phone_number = $9,
+    company_email = $10,
+    company_size = $11,
+    company_industry =  $12,
+    company_branch = $13,
+    company_logo =  $14
+    WHERE id = $15 RETURNING id;`,
     [
       req.body.company_name,
       req.body.company_address,
