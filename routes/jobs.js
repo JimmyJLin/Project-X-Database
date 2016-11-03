@@ -18,6 +18,11 @@ jobs.route('/new')
     res.status( 201 ).json( { data: 'success' } );
   });
 
+  jobs.route('/active')
+    .get( db.showAllActiveJobs, (req, res) => {
+      res.send(res.rows);
+    });
+
 jobs.route('/active/:employer_id')
   .get( db.showActiveJobs, (req, res) => {
     res.send(res.rows);

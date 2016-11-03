@@ -40,7 +40,20 @@ function postAJob(req,res,next){
   })
 };
 
-// get all active jobs
+// Show all active jobs from applicant
+function showAllActiveJobs(req,res,next){
+  db.any('select * from Jobs where status = $1;', ['active'])
+  .then(function(data) {
+    res.rows= data;
+    console.log('this should show all Active Jobs;', data)
+    next();
+  })
+  .catch(function(error){
+    console.error(error);
+  })
+};
+
+// get all active jobs based on employer id
 function showActiveJobs(req,res,next){
   db.any('select * from Jobs where employer_id = $1 and status = $2 ;', [req.params.employer_id, 'active'] )
   .then(function(data) {

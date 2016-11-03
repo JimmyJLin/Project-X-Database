@@ -27,7 +27,7 @@ CREATE TABLE Employers (
   company_city VARCHAR(200),
   company_state VARCHAR(200),
   company_zip VARCHAR(200),
-  company_description VARCHAR(200),
+  company_description VARCHAR(2000),
   company_website VARCHAR(100),
   company_phone_number VARCHAR(200),
   company_email VARCHAR(2000),
