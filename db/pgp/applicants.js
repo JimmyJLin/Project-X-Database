@@ -34,8 +34,8 @@ function showAllApplicants(req,res,next){
         desired_industry, desired_location , school,\
         education_level, experience_level, certifications,\
         languages_spoken, resume_pdf, profile_image ) as helper \
-        right join IndustryExperiences on IndustryExperiences.user_id = helper.ui\
-        right join SkillsExperiences on SkillsExperiences.user_id = helper.ui\
+        inner join IndustryExperiences on IndustryExperiences.user_id = helper.ui\
+        inner join SkillsExperiences on SkillsExperiences.user_id = helper.ui\
       group by helper.ui, helper.name, helper.last_name, helper.email,helper.summary,\
       helper.desired_industry, helper.desired_location , helper.school,\
       helper.education_level, helper.experience_level,helper.certifications,\
