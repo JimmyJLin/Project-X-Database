@@ -174,6 +174,23 @@ function getApplicantIndustryLevels(req,res,next){
     })
 }
 
+function skillsandindustryforMatching(req,res,next){
+  db.any(`select IndustryExperiences.user_id,
+      array_agg(IndustryExperiences.industry_name) as industries,
+      array_agg(SkillsExperiences.skill_name) as skills
+       from IndustryExperiences left join SkillsExperiences
+      on IndustryExperiences.user_id = SkillsExperiences.user_id
+      group by IndustryExperiences.user_id`)
+      .then(function(data) {
+        res.rows= data;
+        next();
+        })
+      .catch(function(error){
+          console.error(error);
+    })
+  }
+
+
 
 
 module.exports.showAllApplicants = showAllApplicants;
@@ -186,3 +203,4 @@ module.exports.postApplicantIndustryLevels = postApplicantIndustryLevels;
 module.exports.postApplicantSkillsLevels = postApplicantSkillsLevels;
 module.exports.getApplicantSkillsLevels = getApplicantSkillsLevels;
 module.exports.getApplicantIndustryLevels = getApplicantIndustryLevels;
+module.exports.skillsandindustryforMatching = skillsandindustryforMatching;
