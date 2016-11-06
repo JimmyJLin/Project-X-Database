@@ -14,9 +14,10 @@ if(process.env.ENVIRONMENT === 'production') {
 
 const db = pgp(cn);
 
+
 // show all applicants
 function showAllApplicants(req,res,next){
-  db.any('select * from Applicants;')
+  db.any('select * from Applicants inner join  ApplicantUsers on  Applicants.user_id = ApplicantUsers.id')
   .then(function(data) {
     res.rows= data;
     console.log('this should show all Applicants;', data)
