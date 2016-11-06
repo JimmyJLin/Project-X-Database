@@ -180,9 +180,9 @@ function skillsandindustryforMatching(req,res,next){
       array_agg(SkillsExperiences.skill_name) as skills
        from IndustryExperiences left join SkillsExperiences
       on IndustryExperiences.user_id = SkillsExperiences.user_id
-      group by IndustryExperiences.user_id`)
+      group by IndustryExperiences.user_id, IndustryExperiences.industry_name, SkillsExperiences.skill_name`)
       .then(function(data) {
-        res.rows= data;
+        res.rows.skills= data;
         next();
         })
       .catch(function(error){
