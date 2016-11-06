@@ -11,7 +11,7 @@ const upload = multer({ dest: 'public/images/applicant_profile_img/'})
 
 
 applicants.route('/')
-  .get(db.showAllApplicants, db.skillsandindustryforMatching, (req, res) => {
+  .get(db.showAllApplicants, (req, res) => {
     res.send(res.rows);
   })
 
