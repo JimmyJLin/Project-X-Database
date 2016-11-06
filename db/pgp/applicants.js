@@ -39,7 +39,8 @@ function showAllApplicants(req,res,next){
       group by helper.ui, helper.name, helper.last_name, helper.email,helper.summary,\
       helper.desired_industry, helper.desired_location , helper.school,\
       helper.education_level, helper.experience_level,helper.certifications,\
-      helper.languages_spoken, helper.resume_pdf, helper.profile_image;\
+      helper.languages_spoken, helper.resume_pdf, helper.profile_image,\
+      IndustryExperiences.industry_name,SkillsExperiences.skill_name;\
   ')
   .then(function(data) {
     res.rows= data;
