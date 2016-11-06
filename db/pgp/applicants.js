@@ -17,7 +17,30 @@ const db = pgp(cn);
 
 // show all applicants
 function showAllApplicants(req,res,next){
-  db.any('select * from Applicants inner join  ApplicantUsers on  Applicants.user_id = ApplicantUsers.id')
+  db.any('select helper.ui, helper.name, helper.last_name, helper.email,helper.summary,\
+  helper.desired_industry, helper.desired_location , helper.school,\
+  helper.education_level, helper.experience_level,helper.certifications,\
+  helper.languages_spoken, helper.resume_pdf, helper.profile_image,\
+  array_agg(IndustryExperiences.industry_name) as industries,\
+  array_agg(SkillsExperiences.skill_name ) as skills\
+  from\
+  (select ApplicantUsers.id as ui, name, last_name, email, summary,\
+    desired_industry, desired_location , school,\
+    education_level, experience_level, certifications,\
+    languages_spoken, resume_pdf, profile_image\
+      from ApplicantUsers\
+        left join Applicants on Applicants.user_id = ApplicantUsers.id\
+        group by ui, summary,\
+        desired_industry, desired_location , school,\
+        education_level, experience_level, certifications,\
+        languages_spoken, resume_pdf, profile_image ) as helper \
+        right join IndustryExperiences on IndustryExperiences.user_id = helper.ui\
+        right join SkillsExperiences on SkillsExperiences.user_id = helper.ui\
+      group by helper.ui, helper.name, helper.last_name, helper.email,helper.summary,\
+      helper.desired_industry, helper.desired_location , helper.school,\
+      helper.education_level, helper.experience_level,helper.certifications,\
+      helper.languages_spoken, helper.resume_pdf, helper.profile_image;\
+  ')
   .then(function(data) {
     res.rows= data;
     console.log('this should show all Applicants;', data)
@@ -174,21 +197,21 @@ function getApplicantIndustryLevels(req,res,next){
     })
 }
 
-function skillsandindustryforMatching(req,res,next){
-  db.any(`select IndustryExperiences.user_id,
-      array_agg(IndustryExperiences.industry_name) as industries,
-      array_agg(SkillsExperiences.skill_name) as skills
-       from IndustryExperiences left join SkillsExperiences
-      on IndustryExperiences.user_id = SkillsExperiences.user_id
-      group by IndustryExperiences.user_id, IndustryExperiences.industry_name, SkillsExperiences.skill_name`)
-      .then(function(data) {
-        res.rows.skills= data;
-        next();
-        })
-      .catch(function(error){
-          console.error(error);
-    })
-  }
+// function skillsandindustryforMatching(req,res,next){
+//   db.any(`select IndustryExperiences.user_id,
+//       array_agg(IndustryExperiences.industry_name) as industries,
+//       array_agg(SkillsExperiences.skill_name) as skills
+//        from IndustryExperiences left join SkillsExperiences
+//       on IndustryExperiences.user_id = SkillsExperiences.user_id
+//       group by IndustryExperiences.user_id, IndustryExperiences.industry_name, SkillsExperiences.skill_name`)
+//       .then(function(data) {
+//         res.rows.skills= data;
+//         next();
+//         })
+//       .catch(function(error){
+//           console.error(error);
+//     })
+//   }
 
 
 
@@ -203,4 +226,4 @@ module.exports.postApplicantIndustryLevels = postApplicantIndustryLevels;
 module.exports.postApplicantSkillsLevels = postApplicantSkillsLevels;
 module.exports.getApplicantSkillsLevels = getApplicantSkillsLevels;
 module.exports.getApplicantIndustryLevels = getApplicantIndustryLevels;
-module.exports.skillsandindustryforMatching = skillsandindustryforMatching;
+// module.exports.skillsandindustryforMatching = skillsandindustryforMatching;

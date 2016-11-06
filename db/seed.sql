@@ -155,10 +155,11 @@ select
       array_agg(industry_name) as industries
       from IndustryExperiences group by (user_id)
 
-select
+    select
       user_id,
       array_agg(skill_name) as skilss
       from SkillsExperiences group by (user_id)
+
 
 
 
@@ -182,7 +183,7 @@ from
 
 
 select
-base.name, base.user_id, base.last_name, base.email,base.summary,
+base.id, base.name, base.last_name, base.email,base.summary,
 base.desired_industry, base.desired_location , base.school,
 base.education_level, base.experience_level,base.certifications,
 base.languages_spoken, base.resume_pdf, base.profile_image,
@@ -190,17 +191,45 @@ array_agg(base.industry_name) as industries,
 array_agg(base.skill_name ) as skills
 from
 (
-    select *
+    select ApplicantUsers.id as ui, name, last_name, email, summary
         from ApplicantUsers
-          inner join Applicants on Applicants.user_id = ApplicantUsers.id
+          inner join Applicants on Applicants.user_id = ApplicantUsers.id group by ui, summary as helper
           inner join IndustryExperiences on IndustryExperiences.user_id = ApplicantUsers.id
           inner join SkillsExperiences on SkillsExperiences.user_id = ApplicantUsers.id
 ) as base
-group by base.name, base.user_id, base.last_name, base.email,base.summary,
+group by base.id, base.name, base.last_name, base.email,base.summary,
 base.desired_industry, base.desired_location , base.school,
 base.education_level, base.experience_level,base.certifications,
 base.languages_spoken, base.resume_pdf, base.profile_image,
-base.industries, base.skills 
+base.industry_name, base.skill_name
+
+
+
+select helper.ui, helper.name, helper.last_name, helper.email,helper.summary,
+helper.desired_industry, helper.desired_location , helper.school,
+helper.education_level, helper.experience_level,helper.certifications,
+helper.languages_spoken, helper.resume_pdf, helper.profile_image,
+array_agg(IndustryExperiences.industry_name) as industries,
+array_agg(SkillsExperiences.skill_name ) as skills
+from
+(select ApplicantUsers.id as ui, name, last_name, email, summary,
+  desired_industry, desired_location , school,
+  education_level, experience_level, certifications,
+  languages_spoken, resume_pdf, profile_image
+    from ApplicantUsers
+      left join Applicants on Applicants.user_id = ApplicantUsers.id
+      group by ui, summary,
+      desired_industry, desired_location , school,
+      education_level, experience_level, certifications,
+      languages_spoken, resume_pdf, profile_image ) as helper
+      right join IndustryExperiences on IndustryExperiences.user_id = helper.ui
+      right join SkillsExperiences on SkillsExperiences.user_id = helper.ui
+    group by helper.ui, helper.name, helper.last_name, helper.email,helper.summary,
+    helper.desired_industry, helper.desired_location , helper.school,
+    helper.education_level, helper.experience_level,helper.certifications,
+    helper.languages_spoken, helper.resume_pdf, helper.profile_image
+
+
 
 -- SELECT
 --   helper.name, helper.location, helper.description, helper.besttimetodo,  helper.category,  helper.image, helper.wish, helper.haveBeen
