@@ -110,7 +110,7 @@ function applicantProfileCheck(req,res,next){
 
 // show all Employer userss
 function showAllEmployerUsers(req, res, next) {
-  db.any('select * from EmployerUsers;')
+  db.any('select * from Employers;')
   .then(function(data) {
     res.rows= data;
     console.log('this should show all Employer Users;', data)
