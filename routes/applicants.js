@@ -20,6 +20,11 @@ applicants.route('/upload_image')
     res.send(req.files);
   })
 
+applicants.route('/upload_pdf')
+  .post(upload.any(), db.uploadResume, (req, res) => {
+    res.send(req.files);
+  })
+
 applicants.route('/new')
   .post(db.postOneApplicantDetails, (req, res) => {
     res.send(res.rows)

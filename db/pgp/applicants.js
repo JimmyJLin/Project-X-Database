@@ -69,6 +69,23 @@ function uploadProfileImage(req,res,next){
     })
 };
 
+// upload profile pdf
+function uploadResume(req,res,next){
+  req.body.filename = req.files[0].filename;
+  console.log(req.body)
+  req.body.filename = req.files[0].filename;
+  db.none(`update Applicants set
+    resume_pdf = $/filename/
+    where id = $/id/`,
+      req.body)
+    .then(() => {
+      console.log('inserted resume');
+    })
+    .catch((err) => {
+      console.error('error uploading resume: ', err);
+    })
+};
+
 // post applicant profile
 function postOneApplicantDetails(req,res,next){
   console.log("req.body coming from db_apex file postOneApplicant", req.body)
@@ -216,9 +233,9 @@ function getApplicantIndustryLevels(req,res,next){
 
 
 
-
 module.exports.showAllApplicants = showAllApplicants;
 module.exports.uploadProfileImage = uploadProfileImage;
+module.exports.uploadResume = uploadResume;
 module.exports.postOneApplicantDetails = postOneApplicantDetails;
 module.exports.showOneApplicant = showOneApplicant;
 module.exports.postOneApplicantImage = postOneApplicantImage;
