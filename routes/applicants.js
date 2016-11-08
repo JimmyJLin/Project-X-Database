@@ -7,6 +7,7 @@ var db            = require('./../db/pgp/applicants.js');
 const secret      = "sosecret";
 const multer = require('multer');
 const upload = multer({ dest: 'public/images/applicant_profile_img/'})
+const uploadPdf = multer({ dest: 'public/images/applicant_profile_resume/'})
 
 
 
@@ -21,7 +22,7 @@ applicants.route('/upload_image')
   })
 
 applicants.route('/upload_pdf')
-  .post(upload.any(), db.uploadResume, (req, res) => {
+  .post(uploadPdf.any(), db.uploadResume, (req, res) => {
     res.send(req.files);
   })
 
