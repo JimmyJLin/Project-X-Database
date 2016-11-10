@@ -69,7 +69,7 @@ function createApplicantUser(req, res, next) {
 
       console.log('New Applicant User added', data)
     })
-    .catch(function () {
+    .catch(function (error) {
       // error;
       console.error('error signing up create ApplicantUser');
     });

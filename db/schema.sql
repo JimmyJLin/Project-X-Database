@@ -13,7 +13,8 @@ CREATE TABLE ApplicantUsers (
   last_name VARCHAR(200),
   email VARCHAR(200) UNIQUE,
   password VARCHAR(200),
-  type VARCHAR(200)
+  type VARCHAR(200),
+  saved_date TIMESTAMP
 );
 
 CREATE TABLE Employers (
@@ -34,7 +35,8 @@ CREATE TABLE Employers (
   company_size VARCHAR(2000),
   company_industry VARCHAR(2000),
   company_branch VARCHAR(2000),
-  company_logo VARCHAR(200)
+  company_logo VARCHAR(200),
+  saved_date TIMESTAMP
 );
 
 
@@ -54,7 +56,8 @@ CREATE TABLE Applicants (
   certifications text[],
   languages_spoken text[],
   resume_pdf VARCHAR(2000),
-  profile_image VARCHAR(200)
+  profile_image VARCHAR(200),
+  saved_date TIMESTAMP
 );
 
 
@@ -70,21 +73,25 @@ CREATE TABLE Jobs (
   experience_level VARCHAR(2000),
   education_level VARCHAR(200),
   starting_date VARCHAR(200),
-  status VARCHAR(20)
+  status VARCHAR(20),
+  saved_date TIMESTAMP
 );
 
 CREATE TABLE Applications (
   applicant_id INTEGER REFERENCES ApplicantUsers (id) ON DELETE CASCADE,
   job_id INTEGER REFERENCES Jobs (id) ON DELETE CASCADE,
   status VARCHAR(20),
-  PRIMARY KEY (applicant_id, job_id)
+  PRIMARY KEY (applicant_id, job_id),
+  saved_date TIMESTAMP
+
 );
 
 CREATE TABLE  IndustryExperiences(
   id SERIAL PRIMARY KEY UNIQUE,
   user_id INTEGER REFERENCES ApplicantUsers (id) ON DELETE CASCADE,
   industry_name VARCHAR(200),
-  level VARCHAR(200)
+  level VARCHAR(200),
+  saved_date TIMESTAMP
 );
 
 CREATE TABLE  SkillsExperiences(
@@ -92,4 +99,5 @@ CREATE TABLE  SkillsExperiences(
   user_id INTEGER REFERENCES ApplicantUsers (id) ON DELETE CASCADE,
   skill_name VARCHAR(200),
   level VARCHAR(200)
+  saved_date TIMESTAMP
 );
