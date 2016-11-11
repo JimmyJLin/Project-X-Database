@@ -46,6 +46,7 @@ function loginApplicantUser(req, res, next) {
       }
     })
     .catch((error) => {
+      res.rows = error
       console.error('error finding users loginApplicantUser')
     })
 }
