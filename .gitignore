@@ -1,3 +1,4 @@
 node_modules
 .env
-images
+images/applicant_profile_img
+images/company_logo
