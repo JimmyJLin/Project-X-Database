@@ -17,26 +17,26 @@ const db = pgp(cn);
 
 // show all applicants
 function showAllApplicants(req,res,next){
-  db.any('select helper.ui, helper.name, helper.last_name, helper.email,helper.summary,\
+  db.any('select helper.ui, helper.work_history, helper.name, helper.last_name, helper.email,helper.summary,\
   helper.desired_industry, helper.desired_location , helper.school,\
   helper.education_level, helper.experience_level,helper.certifications,\
   helper.languages_spoken, helper.resume_pdf, helper.profile_image,\
   array_agg(IndustryExperiences.industry_name) as industries,\
   array_agg(SkillsExperiences.skill_name ) as skills\
   from\
-  (select ApplicantUsers.id as ui, name, last_name, email, summary,\
+  (select ApplicantUsers.id as ui, work_history, name, last_name, email, summary,\
     desired_industry, desired_location , school,\
     education_level, experience_level, certifications,\
     languages_spoken, resume_pdf, profile_image\
       from ApplicantUsers\
         left join Applicants on Applicants.user_id = ApplicantUsers.id\
-        group by ui, summary,\
+        group by ui, work_history, summary,\
         desired_industry, desired_location , school,\
         education_level, experience_level, certifications,\
         languages_spoken, resume_pdf, profile_image ) as helper \
         inner join IndustryExperiences on IndustryExperiences.user_id = helper.ui\
         inner join SkillsExperiences on SkillsExperiences.user_id = helper.ui\
-      group by helper.ui, helper.name, helper.last_name, helper.email,helper.summary,\
+      group by helper.ui, helper.work_history, helper.name, helper.last_name, helper.email,helper.summary,\
       helper.desired_industry, helper.desired_location , helper.school,\
       helper.education_level, helper.experience_level,helper.certifications,\
       helper.languages_spoken, helper.resume_pdf, helper.profile_image\

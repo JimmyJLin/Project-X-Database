@@ -152,7 +152,7 @@ function createEmployerUser(req, res, next) {
       console.log('New Employer added')
       next();
     })
-    .catch(function () {
+    .catch(function (error) {
       // error;
       console.error('error on Employer signing up');
     });
